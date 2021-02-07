@@ -32,21 +32,23 @@ module.exports = class SandwichOrder extends Order{
                 break;
             case OrderState.CHOICE:
                 this.stateCur = OrderState.TYPE
-                if(sInput.toLowerCase() != "custom" || sInput.toLowerCase() != "premade"){
-                    this.isDone(true);
-                    aReturn.push("There was an error in your order, please try again.");
-                }
                 if(sInput.toLowerCase() == "premade"){
                     this.sChoice = sInput;
                     aReturn.push("What type of bread would you like?");
                     aReturn.push("Bagel, Baguette, Multigrain, Croissant");
+                    break;
                 }
                 if(sInput.toLowerCase() == "custom"){
                     this.sChoice = sInput;
                     aReturn.push("What type of bread would you like?");
                     aReturn.push("Bagel, Baguette, Multigrain, Croissant");
+                    break;
                 }
-                break;    
+                else{
+                    this.isDone(true);
+                    aReturn.push("There was an error in your order, please try again.");
+                    break;
+                }    
             case OrderState.TYPE:
                 this.stateCur = OrderState.TOPPINGS
                 this.sType = sInput;
