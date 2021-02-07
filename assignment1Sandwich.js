@@ -24,6 +24,8 @@ module.exports = class SandwichOrder extends Order{
     handleInput(sInput){
         let aReturn = [];
         switch(this.stateCur){
+            default:
+                aReturn.push(`There is an error in your order, please try again.`);
             case OrderState.WELCOMING:
                 this.stateCur = OrderState.CHOICE;
                 aReturn.push("Welcome to Pierre's Sandwichery.");
@@ -92,8 +94,6 @@ module.exports = class SandwichOrder extends Order{
                 d.setMinutes(d.getMinutes() + 20);
                 aReturn.push(`Please pick it up at our Restaurant on 50 William Street West Waterloo N1G 0E3 at ${d.toTimeString()}`);
                 break;
-            default:
-                aReturn.push(`There is an error in your order, please try again.`);
         }
         return aReturn;
     }
