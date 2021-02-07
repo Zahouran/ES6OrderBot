@@ -24,8 +24,6 @@ module.exports = class SandwichOrder extends Order{
     handleInput(sInput){
         let aReturn = [];
         switch(this.stateCur){
-            default:
-                aReturn.push(`There is an error in your order, please try again.`);
             case OrderState.WELCOMING:
                 this.stateCur = OrderState.CHOICE;
                 aReturn.push("Welcome to Pierre's Sandwichery.");
@@ -39,6 +37,10 @@ module.exports = class SandwichOrder extends Order{
                 }
                 if(sInput.toLowerCase() == "custom"){
                     this.sChoice = sInput;
+                }
+                if(sInput.toLowerCase() != "custom" || sInput.toLowerCase() != "premade"){
+                    this.isDone(true);
+                    aReturn.push("There was an error in your order, please try again.");
                 }
                 aReturn.push("What type of bread would you like?");
                 aReturn.push("Bagel, Baguette, Multigrain, Croissant");
