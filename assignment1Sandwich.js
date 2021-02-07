@@ -17,6 +17,7 @@ module.exports = class SandwichOrder extends Order{
         this.sToppings = "";
         this.sDrinks = "";
         this.sItem = "sandwich";
+        this.sTotal = 0;
     }
     handleInput(sInput){
         let aReturn = [];
@@ -44,10 +45,12 @@ module.exports = class SandwichOrder extends Order{
                 if(this.sChoice.toLowerCase() == "premade"){
                     aReturn.push("What sandwich would you like?");
                     aReturn.push("Scramble, BBQ, Teriyaki, Veggietable");
+                    this.sTotal += 4;
                 }
                 if(this.sChoice.toLowerCase() == "custom"){
                     aReturn.push("Pick up to 4 toppings:");
                     aReturn.push("Tomato, Spinach, Baked Tofu, Avocado, Pickled Onion, Roasted Garlic, Mushroom,");
+                    this.sTotal += 5;
                 }
                 break;
             case OrderState.TOPPINGS:
@@ -60,6 +63,7 @@ module.exports = class SandwichOrder extends Order{
                 this.isDone(true);
                 if(sInput.toLowerCase() != "none"){
                     this.sDrinks = sInput;
+                    this.sTotal += 2;
                 }
                 aReturn.push("Thank-you for your order of");
                 if(this.sChoice.toLowerCase() == "premade"){
@@ -69,8 +73,9 @@ module.exports = class SandwichOrder extends Order{
                     aReturn.push(`${this.sType} ${this.sItem} with ${this.sToppings}`);
                 }
                 if(this.sDrinks){
-                    aReturn.push(this.sDrinks);
+                    aReturn.push(`with ${this.sDrinks}`);
                 }
+                aReturn.push(`This will cost $${this.sDrinks}`);
                 let d = new Date(); 
                 d.setMinutes(d.getMinutes() + 20);
                 aReturn.push(`Please pick it up at our Restaurant on 50 William Street West Waterloo N1G 0E3 at ${d.toTimeString()}`);
