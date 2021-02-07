@@ -32,6 +32,11 @@ module.exports = class SandwichOrder extends Order{
                 break;
             case OrderState.CHOICE:
                 this.stateCur = OrderState.TYPE
+                while(sInput.toLowerCase() != "premade" || sInput.toLowerCase() != "custom"){
+                    aReturn.push("Welcome to Pierre's Sandwichery.");
+                    aReturn.push("Would you like a premade sandwich or custom?");
+                    aReturn.push("Enter premade or custom");
+                }
                 if(sInput.toLowerCase() == "premade"){
                     this.sChoice = sInput;
                 }
