@@ -5,7 +5,8 @@ const OrderState = Object.freeze({
     CHOICE:   Symbol("choice"),
     TYPE:   Symbol("type"),
     TOPPINGS:   Symbol("toppings"),
-    DRINKS:  Symbol("drinks")
+    DRINKS:  Symbol("drinks"),
+    SIDES:  Symbol("side")
 });
 
 module.exports = class SandwichOrder extends Order{
@@ -16,6 +17,7 @@ module.exports = class SandwichOrder extends Order{
         this.sType = "";
         this.sToppings = "";
         this.sDrinks = "";
+        this.sSides = "";
         this.sItem = "sandwich";
         this.sTotal = 0;
     }
@@ -54,8 +56,17 @@ module.exports = class SandwichOrder extends Order{
                 }
                 break;
             case OrderState.TOPPINGS:
-                this.stateCur = OrderState.DRINKS
+                this.stateCur = OrderState.SIDES
                 this.sToppings = sInput;
+                aReturn.push("Whould you like a side with that? The soup of the day is Cauliflower Curry");
+                aReturn.push("Fries, Onion Rings, Ceasar Salad, Soup of the Day, none");
+                break;
+            case OrderState.SIDES:  
+                this.stateCur = OrderState.DRINKS
+                if(sInput.toLowerCase() != "none"){
+                    this.sSide = sInput;
+                    this.sTotal += 3;
+                }
                 aReturn.push("What drink would you like with that?");
                 aReturn.push("Orangina, SevenUp, DrPepper, water, none");
                 break;
