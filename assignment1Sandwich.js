@@ -75,7 +75,7 @@ module.exports = class SandwichOrder extends Order{
                 if(this.sDrinks){
                     aReturn.push(`with ${this.sDrinks}`);
                 }
-                aReturn.push(`This will cost $${this.sDrinks}`);
+                aReturn.push(`This will cost $${this.sTotal}`);
                 let d = new Date(); 
                 d.setMinutes(d.getMinutes() + 20);
                 aReturn.push(`Please pick it up at our Restaurant on 50 William Street West Waterloo N1G 0E3 at ${d.toTimeString()}`);
