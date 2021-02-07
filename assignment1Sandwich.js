@@ -83,8 +83,9 @@ module.exports = class SandwichOrder extends Order{
                 if(this.sChoice.toLowerCase() == "custom"){
                     aReturn.push(`${this.sType} ${this.sItem} with ${this.sToppings}`);
                 }
+                aReturn.push(`with ${this.sSides}`);
                 if(this.sDrinks){
-                    aReturn.push(`with ${this.sDrinks}`);
+                    aReturn.push(`and with ${this.sDrinks}`);
                 }
                 aReturn.push(`This will cost $${this.sTotal}`);
                 let d = new Date(); 
