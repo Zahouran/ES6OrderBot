@@ -28,42 +28,46 @@ module.exports = class SandwichOrder extends Order{
                 aReturn.push("Enter premade or custom");
                 break;
             case OrderState.CHOICE:
-                this.sChoice = sInput;
-                if(sChoice.toLowerCase() != "premade"){
-                    this.stateCur = OrderState.TYPE;
-                    aReturn.push("What sandwich would you like?");
-                    aReturn.push("Scramble, BBQ, Teriyaki, Veggietable");
+                this.stateCur = OrderState.TYPE
+                if(sInput.toLowerCase() == "premade"){
+                    this.sChoice = sInput;
                 }
-                else if(sChoice.toLowerCase() != "custom"){
-                    this.stateCur = OrderState.TYPE;
-                    aReturn.push("What type of bread would you like?");
-                    aReturn.push("Bagel, Baguette, Multigrain, Croissant");
+                if(sInput.toLowerCase() == "custom"){
+                    this.sChoice = sInput;
                 }
-                break;    
-            case OrderState.WELCOMING:
-                this.stateCur = OrderState.TYPE;
-                aReturn.push("Welcome to Pierre's Sandwichery.");
                 aReturn.push("What type of bread would you like?");
                 aReturn.push("Bagel, Baguette, Multigrain, Croissant");
-                break;
+                break;    
             case OrderState.TYPE:
                 this.stateCur = OrderState.TOPPINGS
                 this.sType = sInput;
-                aReturn.push("Pick up to 4 toppings:");
-                aReturn.push("Tomato, Spinach, Baked Tofu, Avocado, Pickled Onion, Roasted Garlic, Mushroom,");
+                if(this.sChoice.toLowerCase() == "premade"){
+                    aReturn.push("What sandwich would you like?");
+                    aReturn.push("Scramble, BBQ, Teriyaki, Veggietable");
+                }
+                if(this.sChoice.toLowerCase() == "custom"){
+                    aReturn.push("Pick up to 4 toppings:");
+                    aReturn.push("Tomato, Spinach, Baked Tofu, Avocado, Pickled Onion, Roasted Garlic, Mushroom,");
+                }
                 break;
             case OrderState.TOPPINGS:
                 this.stateCur = OrderState.DRINKS
                 this.sToppings = sInput;
                 aReturn.push("Would you like drinks with that?");
+                aReturn.push("Orangina, SevenUp, DrPepper, water, none");
                 break;
             case OrderState.DRINKS:
                 this.isDone(true);
-                if(sInput.toLowerCase() != "no"){
+                if(sInput.toLowerCase() != "none"){
                     this.sDrinks = sInput;
                 }
                 aReturn.push("Thank-you for your order of");
-                aReturn.push(`${this.sType} ${this.sItem} with ${this.sToppings}`);
+                if(this.sChoice.toLowerCase() == "premade"){
+                    aReturn.push(`${this.sType} ${this.sToppings} ${this.sItem}`);
+                }
+                if(this.sChoice.toLowerCase() == "custom"){
+                    aReturn.push(`${this.sType} ${this.sItem} with ${this.sToppings}`);
+                }
                 if(this.sDrinks){
                     aReturn.push(this.sDrinks);
                 }
