@@ -64,7 +64,7 @@ module.exports = class SandwichOrder extends Order{
             case OrderState.SIDES:  
                 this.stateCur = OrderState.DRINKS
                 if(sInput.toLowerCase() != "none"){
-                    this.sSide = sInput;
+                    this.sSides = sInput;
                     this.sTotal += 3;
                 }
                 aReturn.push("What drink would you like with that?");
