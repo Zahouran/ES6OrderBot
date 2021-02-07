@@ -67,7 +67,7 @@ module.exports = class SandwichOrder extends Order{
                 }
                 aReturn.push("Thank-you for your order of");
                 if(this.sChoice.toLowerCase() == "premade"){
-                    aReturn.push(`${this.sType} ${this.sToppings} ${this.sItem}`);
+                    aReturn.push(`The ${this.sToppings} ${this.sItem} in ${this.sType}`);
                 }
                 if(this.sChoice.toLowerCase() == "custom"){
                     aReturn.push(`${this.sType} ${this.sItem} with ${this.sToppings}`);
