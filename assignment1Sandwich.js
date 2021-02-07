@@ -56,7 +56,7 @@ module.exports = class SandwichOrder extends Order{
             case OrderState.TOPPINGS:
                 this.stateCur = OrderState.DRINKS
                 this.sToppings = sInput;
-                aReturn.push("Would you like drinks with that?");
+                aReturn.push("What drink would you like with that?");
                 aReturn.push("Orangina, SevenUp, DrPepper, water, none");
                 break;
             case OrderState.DRINKS:
