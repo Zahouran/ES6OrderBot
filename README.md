@@ -1,5 +1,7 @@
 Author: Pierre Loubateres
 
+This app is a prototype for Sandwich Orders using SMS.
+
 To run the application from Visual Studio Code:
 
 1. Run `npm install`
