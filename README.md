@@ -1,3 +1,4 @@
+Author: Pierre Loubateres
 
 To run the application from Visual Studio Code:
 
